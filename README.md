@@ -7,9 +7,18 @@ Project 5 for MSCH-C 220. This game is an FPS maze with a randomly generated rou
 Built using Godot 3.3.3
 
 Extra Features:
+- Sprinting
+- Crosshair
+- Weapon
+- Shooting (Animated)
+- HUD (Timer, Enemies Destroyed, Objective)
+- 
 
 ## References
 [3D Multiplayer for Beginners](https://www.youtube.com/watch?v=K0luHLZxjBA)
+[Model for Weapon](https://free3d.com/3d-model/ump-45-389997.html)
+
+
 
 ## Future Development
 None
