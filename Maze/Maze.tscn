@@ -1,0 +1,263 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Maze/Maze.gd" type="Script" id=1]
+[ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://UI/Menu.gd" type="Script" id=3]
+[ext_resource path="res://assets/crosshair_scaled.png" type="Texture" id=4]
+[ext_resource path="res://assets/Jellee-Bold.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/ump47.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://assets/ump45-1.wav" type="AudioStream" id=7]
+
+[sub_resource type="CapsuleMesh" id=1]
+radius = 0.5
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.133333, 0.545098, 0.901961, 1 )
+
+[sub_resource type="CapsuleShape" id=3]
+radius = 0.5
+
+[sub_resource type="BoxShape" id=4]
+margin = 0.001
+extents = Vector3( 0.4, 0.1, 0.4 )
+
+[sub_resource type="CubeMesh" id=5]
+
+[sub_resource type="Animation" id=6]
+resource_name = "AssaultFire"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player/Pivot/Camera/Hand/MeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.355, -0.255, -0.544 ), Vector3( 0.355, -0.255, -0.656 ), Vector3( 0.355, -0.255, -0.544 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player/Pivot/Camera/Hand/MeshInstance2:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.378578, -0.399619, -0.476852 ), Vector3( 0.377713, -0.399619, -0.568273 ), Vector3( 0.378515, -0.399619, -0.483529 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player/Pivot/Camera/Hand/MeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.356475, -0.254735, -0.543838 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player/Pivot/Camera/Hand/MeshInstance2:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.378578, -0.399619, -0.476852 ) ]
+}
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0, 0.0601093, 0.748634, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 0, 0, 1, 1, 0.732558, 0.732558, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+width = 2045
+
+[sub_resource type="DynamicFont" id=12]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = 4
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=13]
+default_font = SubResource( 12 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 26
+outline_color = Color( 1, 1, 1, 0 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=9]
+default_font = SubResource( 8 )
+
+[sub_resource type="DynamicFont" id=14]
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=15]
+default_font = SubResource( 14 )
+
+[node name="Game" type="Spatial"]
+
+[node name="Maze" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -2, -0.5 )
+script = ExtResource( 1 )
+
+[node name="Player" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+script = ExtResource( 2 )
+
+[node name="GunShoot" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Player"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="Body" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 0 )
+shape = SubResource( 3 )
+
+[node name="Feet" type="CollisionShape" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0 )
+shape = SubResource( 4 )
+
+[node name="Pivot" type="Position3D" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0 )
+
+[node name="Camera" type="Camera" parent="Player/Pivot"]
+current = true
+
+[node name="RayCast" type="RayCast" parent="Player/Pivot/Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -200 )
+
+[node name="Hand" type="Spatial" parent="Player/Pivot/Camera"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Player/Pivot/Camera/Hand"]
+transform = Transform( 0.013133, 0, -0.0443296, 0, 0.0443488, 0, 0.446174, 0, 0.00130483, 0.356475, -0.254735, -0.543838 )
+visible = false
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="Player/Pivot/Camera/Hand"]
+transform = Transform( -0.000932539, 0, 0.0985777, 0, 0.0790763, 0, -0.0985777, 0, -0.000932539, 0.378578, -0.399619, -0.476852 )
+mesh = ExtResource( 6 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+material/5 = null
+material/6 = null
+
+[node name="TextureRect" type="TextureRect" parent="Player/Pivot/Camera"]
+margin_left = 499.0
+margin_top = 273.0
+margin_right = 539.0
+margin_bottom = 313.0
+mouse_filter = 2
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="Control" parent="."]
+pause_mode = 2
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Menu"]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.25098 )
+
+[node name="Restart" type="Button" parent="Menu"]
+margin_left = 474.0
+margin_top = 250.0
+margin_right = 574.0
+margin_bottom = 290.0
+text = "Restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="Menu"]
+margin_left = 474.0
+margin_top = 300.0
+margin_right = 574.0
+margin_bottom = 340.0
+text = "Quit"
+
+[node name="Animate" type="AnimationPlayer" parent="."]
+anims/AssaultFire = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_top = 3.0
+margin_right = 2048.0
+margin_bottom = 83.0
+texture = SubResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Objective" type="RichTextLabel" parent="."]
+margin_left = 754.0
+margin_top = 3.0
+margin_right = 1044.0
+margin_bottom = 115.0
+theme = SubResource( 13 )
+text = "Objective: Destroy as many enemies as possible before time runs out"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 9.0
+margin_top = 9.0
+margin_right = 430.0
+margin_bottom = 51.0
+size_flags_vertical = 1
+theme = SubResource( 9 )
+text = "Time Remaining: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnemiesDestroyed" type="Label" parent="."]
+margin_left = 443.0
+margin_top = 12.0
+margin_right = 609.0
+margin_bottom = 68.0
+theme = SubResource( 15 )
+text = "Enemies Destroyed: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Menu/Restart" to="Menu" method="_on_Restart_pressed"]
+[connection signal="pressed" from="Menu/Quit" to="Menu" method="_on_Quit_pressed"]
