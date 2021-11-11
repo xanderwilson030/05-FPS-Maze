@@ -3,6 +3,11 @@ extends KinematicBody
 onready var Camera = $Pivot/Camera
 onready var anim_player = get_node("/root/Game/Animate")
 onready var raycast = $Pivot/Camera/RayCast
+onready var player_score = get_node("/root/Game/EnemiesDestroyed")
+
+
+onready var timer = get_node("/root/Game/Timer")
+onready var label = get_node("/root/Game/Label")
 
 onready var gun_shoot = $GunShoot
 
@@ -14,16 +19,32 @@ var mouse_range = 1.2
 const MAX_SPRINT_SPEED = 16
 const SPRINT_ACCEL = 18
 var is_sprinting = false
+var health = 10
 
 var velocity = Vector3()
 
 var damage = 10
 const MAX_CAM_SHAKE = 0.3
 
+var enemies_destroyed = 0;
+
 
 func _ready():
-	pass
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	timer.start(30)
 	
+func _process(delta):
+	
+	label.set_text("Time Remaining: " + str(timer.get_time_left()))
+	
+	if timer.get_time_left() <= 0:
+		var _target = get_tree().change_scene("res://UI/Win.tscn")
+		
+	if health <= 0:
+		var _scene = get_tree().change_scene("res://UI/MainMenu.tscn")
+
+
+
 func fire():
 	if Input.is_action_pressed("fire"):
 		if not anim_player.is_playing():
@@ -35,6 +56,10 @@ func fire():
 				var target = raycast.get_collider()
 				if target.is_in_group("Enemy"):
 					target.health -= damage;
+					if target.health == 0:
+						enemies_destroyed = enemies_destroyed + 1
+						player_score.set_text("Enemies Destroyed: " + str(enemies_destroyed))
+					
 		anim_player.play("AssaultFire")
 	else:
 		Camera.translation = Vector3()

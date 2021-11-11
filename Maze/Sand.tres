@@ -1,0 +1,14 @@
+[gd_resource type="SpatialMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://Material/sand_rough.jpg" type="Texture" id=1]
+[ext_resource path="res://Material/sand_metal.jpg" type="Texture" id=2]
+[ext_resource path="res://Material/sand_normal.jpg" type="Texture" id=3]
+[ext_resource path="res://Material/sand_albedo.jpg" type="Texture" id=4]
+
+[resource]
+albedo_texture = ExtResource( 4 )
+metallic_texture = ExtResource( 2 )
+roughness_texture = ExtResource( 1 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 3 )

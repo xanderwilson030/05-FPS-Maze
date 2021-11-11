@@ -38,6 +38,7 @@ var width = 20  # width of map (in tiles)
 var height = 12  # height of map (in tiles)
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	randomize()
 	make_maze()
 	

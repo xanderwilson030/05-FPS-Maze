@@ -1,16 +1,38 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Enemy/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Maze/Guardian.tres" type="ArrayMesh" id=2]
+[ext_resource path="res://Material/rock_ao.jpg" type="Texture" id=3]
+[ext_resource path="res://Material/rock_depth.jpg" type="Texture" id=4]
+[ext_resource path="res://Material/rock_rough.jpg" type="Texture" id=5]
+[ext_resource path="res://Material/rock_albedo.jpg" type="Texture" id=6]
+[ext_resource path="res://Material/rock_metal.jpg" type="Texture" id=7]
 
-[sub_resource type="CapsuleShape" id=1]
-height = 0.002
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 1.52931, 2.55923, 0.955178 )
 
-[sub_resource type="ShaderMaterial" id=3]
-
-[sub_resource type="CapsuleMesh" id=2]
-material = SubResource( 3 )
-
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.478431, 0.152941, 0.152941, 1 )
+albedo_texture = ExtResource( 6 )
+metallic = 1.0
+metallic_specular = 1.0
+metallic_texture = ExtResource( 7 )
+roughness_texture = ExtResource( 5 )
+ao_enabled = true
+ao_light_affect = 0.97
+ao_texture = ExtResource( 3 )
+ao_on_uv2 = false
+ao_texture_channel = 0
+depth_enabled = true
+depth_scale = -2.096
+depth_deep_parallax = true
+depth_min_layers = 8
+depth_max_layers = 32
+depth_flip_tangent = false
+depth_flip_binormal = false
+depth_texture = ExtResource( 4 )
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
 
 [node name="Enemy" type="KinematicBody" groups=["Enemy"]]
 transform = Transform( 1.00384, 0, 0, 0, 0.487816, 0, 0, 0, 1.00384, 0, 0, 0 )
@@ -18,9 +40,9 @@ script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1.62547, 0, 0, 0, 1, 0.121066, -0.0366991, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 0.67305, 0, 0, 0, -3.04162e-08, -1.00953, 0, 0.67305, -4.26825e-08, 0, 0, 0 )
-mesh = SubResource( 2 )
-material/0 = SubResource( 4 )
+transform = Transform( 0.168, -0.000645107, -0.000493234, 0.000529091, 0.82545, -0.0177892, 0.000174472, 0.0300517, 0.487677, 0, 0, 0 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 6 )
