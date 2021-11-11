@@ -30,7 +30,6 @@ var enemies_destroyed = 0;
 
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	timer.start(30)
 	
 func _process(delta):
