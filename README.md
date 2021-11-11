@@ -9,10 +9,14 @@ Built using Godot 3.3.3
 Extra Features:
 - Sprinting
 - Crosshair
-- Weapon
+- Weapon (Custom Model)
 - Shooting (Animated)
+- Sound effects (Shooting)
 - HUD (Timer, Enemies Destroyed, Objective)
-- 
+- Custom 3D model made by me for the Stone Guardian Enemy
+- Materials
+- Lighting
+- Juicy Menus
 
 ## References
 [3D Multiplayer for Beginners](https://www.youtube.com/watch?v=K0luHLZxjBA)
