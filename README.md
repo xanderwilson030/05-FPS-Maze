@@ -12,6 +12,7 @@ Extra Features:
 - Weapon (Custom Model)
 - Shooting (Animated)
 - Sound effects (Shooting)
+- Screen Shake (Shooting)
 - HUD (Timer, Enemies Destroyed, Objective)
 - Custom 3D model made by me for the Stone Guardian Enemy
 - Materials
